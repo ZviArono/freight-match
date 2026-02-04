@@ -21,7 +21,11 @@ export function RoleGuard({
     if (!profile) {
       router.replace("/login");
     } else if (profile.role !== allowedRole) {
-      router.replace("/dashboard");
+      router.replace(
+        profile.role === "trucker"
+          ? "/trucker/dashboard"
+          : "/company/dashboard"
+      );
     }
   }, [profile, isLoading, allowedRole, router]);
 

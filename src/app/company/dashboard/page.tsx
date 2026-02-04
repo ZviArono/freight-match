@@ -70,13 +70,13 @@ export default function CompanyDashboard() {
         {/* Quick Actions */}
         <div className="mb-6 grid grid-cols-2 gap-3">
           <Link
-            href="/shipments/new"
+            href="/company/shipments/new"
             className="flex h-12 items-center justify-center rounded-lg bg-primary-600 text-sm font-semibold text-white transition hover:bg-primary-700"
           >
             + New Shipment
           </Link>
           <Link
-            href="/map"
+            href="/company/map"
             className="flex h-12 items-center justify-center rounded-lg border border-gray-300 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
           >
             View Map
@@ -100,7 +100,7 @@ export default function CompanyDashboard() {
         ) : (
           <div className="space-y-3">
             {shipments.map((shipment) => (
-              <Link key={shipment.id} href={`/shipments/${shipment.id}`}>
+              <Link key={shipment.id} href={`/company/shipments/${shipment.id}`}>
                 <Card className="transition hover:shadow-md">
                   <div className="flex items-start justify-between">
                     <div className="min-w-0 flex-1">

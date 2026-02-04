@@ -42,7 +42,7 @@ export function ShipmentCard({ shipment }: ShipmentCardProps) {
   });
 
   return (
-    <Link href={`/shipments/${shipment.id}`}>
+    <Link href={`/company/shipments/${shipment.id}`}>
       <div className="rounded-xl bg-white p-4 shadow-sm transition hover:shadow-md active:bg-gray-50">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">

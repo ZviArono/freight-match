@@ -5,7 +5,7 @@ import { BottomNav } from "@/components/layout/BottomNav";
 
 const navItems = [
   {
-    href: "/dashboard",
+    href: "/company/dashboard",
     label: "Dashboard",
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -14,7 +14,7 @@ const navItems = [
     ),
   },
   {
-    href: "/shipments",
+    href: "/company/shipments",
     label: "Shipments",
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -23,7 +23,7 @@ const navItems = [
     ),
   },
   {
-    href: "/map",
+    href: "/company/map",
     label: "Map",
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">

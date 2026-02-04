@@ -334,7 +334,7 @@ export default function ShipmentDetailPage() {
           {/* Find Carriers Button */}
           {(shipment.status === "posted" ||
             shipment.status === "negotiating") && (
-            <Link href="/map">
+            <Link href="/company/map">
               <Button fullWidth size="lg">
                 Find Carriers
               </Button>

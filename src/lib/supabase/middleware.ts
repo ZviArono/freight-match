@@ -42,18 +42,29 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  // If logged in and on an auth page, redirect to dashboard
-  if (user && isAuthPage) {
-    // Fetch user role from profile to route correctly
+  // Helper: get role-based dashboard path
+  async function getDashboardPath() {
     const { data: profile } = await supabase
       .from("profiles")
       .select("role")
-      .eq("id", user.id)
+      .eq("id", user!.id)
       .single();
+    return profile?.role === "trucker"
+      ? "/trucker/dashboard"
+      : "/company/dashboard";
+  }
 
+  // If logged in and on an auth page, redirect to dashboard
+  if (user && isAuthPage) {
     const url = request.nextUrl.clone();
-    url.pathname =
-      profile?.role === "trucker" ? "/dashboard" : "/dashboard";
+    url.pathname = await getDashboardPath();
+    return NextResponse.redirect(url);
+  }
+
+  // Redirect bare /dashboard to role-specific dashboard
+  if (user && pathname === "/dashboard") {
+    const url = request.nextUrl.clone();
+    url.pathname = await getDashboardPath();
     return NextResponse.redirect(url);
   }
 

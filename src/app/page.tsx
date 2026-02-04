@@ -15,7 +15,11 @@ export default function Home() {
     if (!user) {
       router.replace("/login");
     } else if (profile) {
-      router.replace("/dashboard");
+      router.replace(
+        profile.role === "trucker"
+          ? "/trucker/dashboard"
+          : "/company/dashboard"
+      );
     }
   }, [user, profile, isLoading, router]);
 

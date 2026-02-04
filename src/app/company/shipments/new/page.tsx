@@ -12,7 +12,7 @@ export default function NewShipmentPage() {
     <>
       <Header title="New Shipment" />
       <main className="mx-auto max-w-lg pb-8">
-        <ShipmentForm onSuccess={() => router.push("/shipments")} />
+        <ShipmentForm onSuccess={() => router.push("/company/shipments")} />
       </main>
     </>
   );
