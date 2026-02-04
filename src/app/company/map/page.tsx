@@ -4,7 +4,13 @@ import React, { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { MapContainer } from "@/components/map/MapContainer";
-import { TruckMarker } from "@/components/map/TruckMarker";
+import dynamic from "next/dynamic";
+
+const TruckMarker = dynamic(
+  () =>
+    import("@/components/map/TruckMarker").then((mod) => mod.TruckMarker),
+  { ssr: false }
+);
 import { useTruckerLocations } from "@/hooks/useTruckerLocations";
 import type { MapBounds } from "@/types/map";
 

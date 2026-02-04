@@ -9,7 +9,13 @@ import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Select } from "@/components/ui/Select";
 import { Spinner } from "@/components/ui/Spinner";
-import { LocationPicker } from "@/components/map/LocationPicker";
+import dynamic from "next/dynamic";
+
+const LocationPicker = dynamic(
+  () =>
+    import("@/components/map/LocationPicker").then((mod) => mod.LocationPicker),
+  { ssr: false }
+);
 import { createClient } from "@/lib/supabase/client";
 import type { TruckerAvailability } from "@/types/database";
 import type { LocationWithAddress } from "@/types/map";

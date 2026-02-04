@@ -1,11 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import { createClient } from "@/lib/supabase/client";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
-import { LocationPicker } from "@/components/map/LocationPicker";
 import type { LocationWithAddress } from "@/types/map";
+
+const LocationPicker = dynamic(
+  () =>
+    import("@/components/map/LocationPicker").then((mod) => mod.LocationPicker),
+  { ssr: false }
+);
 
 interface ShipmentFormProps {
   onSuccess: () => void;
