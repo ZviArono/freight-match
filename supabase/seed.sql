@@ -86,7 +86,7 @@ INSERT INTO public.shipments (
     pickup_date, pickup_time_start, pickup_time_end,
     delivery_deadline, budget_min, budget_max, status
 ) VALUES (
-    's1111111-1111-1111-1111-111111111111',
+    'c1111111-1111-1111-1111-111111111111',
     'a1111111-1111-1111-1111-111111111111',
     'Electronics to Detroit',
     '12 pallets of consumer electronics, fragile, climate-controlled preferred.',
@@ -105,7 +105,7 @@ INSERT INTO public.shipments (
     dropoff_location, dropoff_address,
     pickup_date, delivery_deadline, budget_min, budget_max, status
 ) VALUES (
-    's2222222-2222-2222-2222-222222222222',
+    'c2222222-2222-2222-2222-222222222222',
     'a1111111-1111-1111-1111-111111111111',
     'Auto parts to Phoenix',
     '8 pallets of automotive parts, heavy load.',
@@ -126,7 +126,7 @@ INSERT INTO public.shipments (
     delivery_deadline, budget_min, budget_max, status,
     assigned_trucker_id
 ) VALUES (
-    's3333333-3333-3333-3333-333333333333',
+    'c3333333-3333-3333-3333-333333333333',
     'a2222222-2222-2222-2222-222222222222',
     'Medical supplies to Boston',
     '5 pallets of medical supplies, time-sensitive delivery.',
@@ -147,7 +147,7 @@ INSERT INTO public.shipments (
     pickup_date, delivery_deadline, budget_min, budget_max, status,
     assigned_trucker_id
 ) VALUES (
-    's4444444-4444-4444-4444-444444444444',
+    'c4444444-4444-4444-4444-444444444444',
     'a1111111-1111-1111-1111-111111111111',
     'Food products to Houston',
     '20 pallets of packaged food, refrigerated truck required.',
@@ -167,7 +167,7 @@ INSERT INTO public.shipments (
     pickup_date, pickup_time_start, pickup_time_end,
     delivery_deadline, budget_min, budget_max, status
 ) VALUES (
-    's5555555-5555-5555-5555-555555555555',
+    'c5555555-5555-5555-5555-555555555555',
     'a2222222-2222-2222-2222-222222222222',
     'Furniture to Portland',
     '6 pallets of flat-pack furniture.',
@@ -235,8 +235,8 @@ INSERT INTO public.negotiations (
     id, shipment_id, company_id, trucker_id,
     status, current_price, proposed_by, expires_at, version
 ) VALUES (
-    'n1111111-1111-1111-1111-111111111111',
-    's2222222-2222-2222-2222-222222222222',
+    'd1111111-1111-1111-1111-111111111111',
+    'c2222222-2222-2222-2222-222222222222',
     'a1111111-1111-1111-1111-111111111111',
     'b3333333-3333-3333-3333-333333333333',
     'counter_offered', 1500.00,
@@ -249,21 +249,21 @@ INSERT INTO public.negotiations (
 INSERT INTO public.negotiation_events (id, negotiation_id, event_type, from_status, to_status, price, actor_id, metadata, created_at) VALUES
 (
     'e1111111-1111-1111-1111-111111111111',
-    'n1111111-1111-1111-1111-111111111111',
+    'd1111111-1111-1111-1111-111111111111',
     'price_proposed', 'initiated', 'proposed', 1200.00,
     'a1111111-1111-1111-1111-111111111111',
     '{"version": 1}', now() - INTERVAL '3 hours'
 ),
 (
     'e2222222-2222-2222-2222-222222222222',
-    'n1111111-1111-1111-1111-111111111111',
+    'd1111111-1111-1111-1111-111111111111',
     'price_proposed', 'proposed', 'counter_offered', 1600.00,
     'b3333333-3333-3333-3333-333333333333',
     '{"version": 2}', now() - INTERVAL '2 hours'
 ),
 (
     'e3333333-3333-3333-3333-333333333333',
-    'n1111111-1111-1111-1111-111111111111',
+    'd1111111-1111-1111-1111-111111111111',
     'price_proposed', 'counter_offered', 'counter_offered', 1500.00,
     'b3333333-3333-3333-3333-333333333333',
     '{"version": 3}', now() - INTERVAL '30 minutes'
@@ -277,7 +277,7 @@ WHERE id = 'e3333333-3333-3333-3333-333333333333';
 INSERT INTO public.negotiation_events (id, negotiation_id, event_type, from_status, to_status, price, actor_id, metadata, created_at) VALUES
 (
     'e4444444-4444-4444-4444-444444444444',
-    'n1111111-1111-1111-1111-111111111111',
+    'd1111111-1111-1111-1111-111111111111',
     'price_proposed', 'counter_offered', 'counter_offered', 1500.00,
     'b3333333-3333-3333-3333-333333333333',
     '{"version": 4}', now() - INTERVAL '10 minutes'
@@ -289,8 +289,8 @@ INSERT INTO public.negotiations (
     status, current_price, proposed_by,
     accepted_at, version
 ) VALUES (
-    'n2222222-2222-2222-2222-222222222222',
-    's3333333-3333-3333-3333-333333333333',
+    'd2222222-2222-2222-2222-222222222222',
+    'c3333333-3333-3333-3333-333333333333',
     'a2222222-2222-2222-2222-222222222222',
     'b1111111-1111-1111-1111-111111111111',
     'accepted', 950.00,
@@ -302,19 +302,19 @@ INSERT INTO public.negotiations (
 -- Events for negotiation 2
 INSERT INTO public.negotiation_events (negotiation_id, event_type, from_status, to_status, price, actor_id, created_at) VALUES
 (
-    'n2222222-2222-2222-2222-222222222222',
+    'd2222222-2222-2222-2222-222222222222',
     'price_proposed', 'initiated', 'proposed', 900.00,
     'a2222222-2222-2222-2222-222222222222',
     now() - INTERVAL '8 hours'
 ),
 (
-    'n2222222-2222-2222-2222-222222222222',
+    'd2222222-2222-2222-2222-222222222222',
     'price_proposed', 'proposed', 'counter_offered', 950.00,
     'b1111111-1111-1111-1111-111111111111',
     now() - INTERVAL '7 hours'
 ),
 (
-    'n2222222-2222-2222-2222-222222222222',
+    'd2222222-2222-2222-2222-222222222222',
     'offer_accepted', 'counter_offered', 'accepted', 950.00,
     'a2222222-2222-2222-2222-222222222222',
     now() - INTERVAL '6 hours'
@@ -326,8 +326,8 @@ INSERT INTO public.negotiations (
     status, current_price, proposed_by,
     accepted_at, version
 ) VALUES (
-    'n3333333-3333-3333-3333-333333333333',
-    's4444444-4444-4444-4444-444444444444',
+    'd3333333-3333-3333-3333-333333333333',
+    'c4444444-4444-4444-4444-444444444444',
     'a1111111-1111-1111-1111-111111111111',
     'b2222222-2222-2222-2222-222222222222',
     'accepted', 1100.00,
@@ -342,49 +342,49 @@ INSERT INTO public.negotiations (
 
 INSERT INTO public.messages (negotiation_id, sender_id, content, message_type, negotiation_event_id, is_read, created_at) VALUES
 (
-    'n1111111-1111-1111-1111-111111111111',
+    'd1111111-1111-1111-1111-111111111111',
     'a1111111-1111-1111-1111-111111111111',
     'Hi Dan, we have a shipment from LA to Phoenix. Can you do it for $1,200?',
     'text', NULL, true, now() - INTERVAL '3 hours 5 minutes'
 ),
 (
-    'n1111111-1111-1111-1111-111111111111',
+    'd1111111-1111-1111-1111-111111111111',
     'a1111111-1111-1111-1111-111111111111',
     'Proposed price: $1200.00',
     'negotiation_action', 'e1111111-1111-1111-1111-111111111111', true, now() - INTERVAL '3 hours'
 ),
 (
-    'n1111111-1111-1111-1111-111111111111',
+    'd1111111-1111-1111-1111-111111111111',
     'b3333333-3333-3333-3333-333333333333',
     'Hey! I am in the area but $1,200 is too low for that route. How about $1,600?',
     'text', NULL, true, now() - INTERVAL '2 hours 5 minutes'
 ),
 (
-    'n1111111-1111-1111-1111-111111111111',
+    'd1111111-1111-1111-1111-111111111111',
     'b3333333-3333-3333-3333-333333333333',
     'Proposed price: $1600.00',
     'negotiation_action', 'e2222222-2222-2222-2222-222222222222', true, now() - INTERVAL '2 hours'
 ),
 (
-    'n1111111-1111-1111-1111-111111111111',
+    'd1111111-1111-1111-1111-111111111111',
     'a1111111-1111-1111-1111-111111111111',
     'That is a bit high for us. We can stretch to $1,400. The load is straightforward.',
     'text', NULL, true, now() - INTERVAL '35 minutes'
 ),
 (
-    'n1111111-1111-1111-1111-111111111111',
+    'd1111111-1111-1111-1111-111111111111',
     'a1111111-1111-1111-1111-111111111111',
     'Proposed price: $1400.00',
     'negotiation_action', 'e3333333-3333-3333-3333-333333333333', true, now() - INTERVAL '30 minutes'
 ),
 (
-    'n1111111-1111-1111-1111-111111111111',
+    'd1111111-1111-1111-1111-111111111111',
     'b3333333-3333-3333-3333-333333333333',
     'Meet in the middle at $1,500? I can pick up first thing Thursday.',
     'text', NULL, false, now() - INTERVAL '12 minutes'
 ),
 (
-    'n1111111-1111-1111-1111-111111111111',
+    'd1111111-1111-1111-1111-111111111111',
     'b3333333-3333-3333-3333-333333333333',
     'Proposed price: $1500.00',
     'negotiation_action', 'e4444444-4444-4444-4444-444444444444', false, now() - INTERVAL '10 minutes'
