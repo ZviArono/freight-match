@@ -37,22 +37,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     async function getSession() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      try {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
 
-      setUser(user);
+        setUser(user);
 
-      if (user) {
-        const { data } = await supabase
-          .from("profiles")
-          .select("*")
-          .eq("id", user.id)
-          .single();
-        setProfile(data);
+        if (user) {
+          const { data } = await supabase
+            .from("profiles")
+            .select("*")
+            .eq("id", user.id)
+            .single();
+          setProfile(data);
+        }
+      } catch (err) {
+        console.error("Auth session error:", err);
+        setUser(null);
+        setProfile(null);
+      } finally {
+        setIsLoading(false);
       }
-
-      setIsLoading(false);
     }
 
     getSession();
@@ -63,12 +69,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(session?.user ?? null);
 
       if (session?.user) {
-        const { data } = await supabase
-          .from("profiles")
-          .select("*")
-          .eq("id", session.user.id)
-          .single();
-        setProfile(data);
+        try {
+          const { data } = await supabase
+            .from("profiles")
+            .select("*")
+            .eq("id", session.user.id)
+            .single();
+          setProfile(data);
+        } catch (err) {
+          console.error("Profile fetch error:", err);
+          setProfile(null);
+        }
       } else {
         setProfile(null);
       }

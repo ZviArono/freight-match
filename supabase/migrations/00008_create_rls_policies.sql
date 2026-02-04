@@ -171,12 +171,20 @@ CREATE POLICY negotiations_select_party
         company_id = auth.uid() OR trucker_id = auth.uid()
     );
 
--- Only companies can initiate a negotiation.
+-- Companies can initiate a negotiation.
 CREATE POLICY negotiations_insert_company
     ON public.negotiations FOR INSERT
     TO authenticated
     WITH CHECK (
         public.is_company() AND company_id = auth.uid()
+    );
+
+-- Truckers can also initiate a negotiation (e.g. "Make an Offer" on a job).
+CREATE POLICY negotiations_insert_trucker
+    ON public.negotiations FOR INSERT
+    TO authenticated
+    WITH CHECK (
+        public.is_trucker() AND trucker_id = auth.uid()
     );
 
 -- Both parties can update (for status transitions via RPC).
