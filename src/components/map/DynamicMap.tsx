@@ -63,7 +63,7 @@ function MapCenterUpdater({ center }: { center?: LatLng }) {
   return null;
 }
 
-const DEFAULT_CENTER: LatLng = { lat: 40.7128, lng: -74.006 };
+const DEFAULT_CENTER: LatLng = { lat: 32.0853, lng: 34.7818 };
 const DEFAULT_ZOOM = 12;
 
 export default function DynamicMap({
